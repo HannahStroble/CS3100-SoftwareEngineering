@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Player.gd" type="Script" id=1]
+[ext_resource path="res://sprites/DinoSprites - vita.png" type="Texture" id=2]
+[ext_resource path="res://Jump.tres" type="Animation" id=3]
+[ext_resource path="res://Running.tres" type="Animation" id=4]
+[ext_resource path="res://Walking.tres" type="Animation" id=5]
+[ext_resource path="res://idle.tres" type="Animation" id=6]
+
+[sub_resource type="Animation" id=2]
+resource_name = "fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[sub_resource type="RectangleShape2D" id=1]
+
+[node name="Player" type="KinematicBody2D"]
+scale = Vector2( 0.280065, 0.228999 )
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 3.8147e-006 )
+scale = Vector2( 4.93011, 4.90062 )
+texture = ExtResource( 2 )
+hframes = 24
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/Jump = ExtResource( 3 )
+anims/Running = ExtResource( 4 )
+anims/Walking = ExtResource( 5 )
+anims/fall = SubResource( 2 )
+anims/idle = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+scale = Vector2( 1.7744, 4.03875 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+scale = Vector2( 6.45549, 7.93681 )
+current = true
+drag_margin_left = 0.02
+drag_margin_top = 0.07
+drag_margin_right = 0.02
+drag_margin_bottom = 0.07
+editor_draw_drag_margin = true
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 39.2766, -17.4673 )
