@@ -1,0 +1,81 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.55832, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.812, 8.958 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1.05771, 6.57176 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 14
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+speed = Vector2( 300, 1500 )
+gravity = 300.0
+
+[node name="DinoSprites - vita" type="Sprite" parent="."]
+position = Vector2( 1, -9 )
+texture = ExtResource( 2 )
+hframes = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+modulate = Color( 0.054902, 0, 1, 1 )
+position = Vector2( 0.907874, -9.08518 )
+scale = Vector2( 0.533271, 0.954602 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 0.541548, -37.6191 )
+scale = Vector2( 0.723224, 1.44107 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2( -0.415779, -0.0831566 )
+space_override = 1
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+modulate = Color( 0, 0.00392157, 0.0392157, 1 )
+position = Vector2( 1.24225, -7.89964 )
+scale = Vector2( 1.09344, 0.9071 )
+shape = SubResource( 2 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+modulate = Color( 0.0784314, 1, 0.329412, 1 )
+position = Vector2( 4.75527, -9.39456 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 1.33579, -0.328073 )
+shape = SubResource( 3 )
+
+[node name="HurtBox2" type="Area2D" parent="."]
+modulate = Color( 0.0784314, 1, 0.329412, 1 )
+position = Vector2( -2.66759, -9.1626 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+position = Vector2( -1.64043, -0.585674 )
+shape = SubResource( 3 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
+[connection signal="body_entered" from="HurtBox2" to="." method="_on_HurtBox_body_entered"]
