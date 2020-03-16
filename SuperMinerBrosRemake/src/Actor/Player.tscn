@@ -13,7 +13,7 @@ extents = Vector2( 3.812, 8.958 )
 extents = Vector2( 1.05771, 6.57176 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_mask = 14
+collision_mask = 30
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]

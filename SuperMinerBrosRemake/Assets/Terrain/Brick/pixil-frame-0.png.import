@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TileSet.png-66d9ca8782ef5dc5ed166f3709c7224b.stex"
+path="res://.import/pixil-frame-0.png-03f1d5b67d17433fb3160760f26039d3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Terrain/TileSet.png"
-dest_files=[ "res://.import/TileSet.png-66d9ca8782ef5dc5ed166f3709c7224b.stex" ]
+source_file="res://Assets/Terrain/Brick/pixil-frame-0.png"
+dest_files=[ "res://.import/pixil-frame-0.png-03f1d5b67d17433fb3160760f26039d3.stex" ]
 
 [params]
 
