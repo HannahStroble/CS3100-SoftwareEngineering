@@ -21,8 +21,34 @@ func _ready() -> void:
 		for i in file.get_line():
 			
 			# set static background tiles
-			if i == "X":
+			# set stone version 1
+			if i == "a":
 				set_cell(x_cord,y_cord,0)
+				x_cord += 1
+			
+			# set block version 1
+			if i == "b":
+				set_cell(x_cord,y_cord,1)
+				x_cord += 1
+			
+			# set brick version 1
+			if i == "c":
+				set_cell(x_cord,y_cord,2)
+				x_cord += 1
+				
+			# set stone version 2
+			if i == "j":
+				set_cell(x_cord,y_cord,3)
+				x_cord += 1
+			
+			# set block version 2
+			if i == "k":
+				set_cell(x_cord,y_cord,4)
+				x_cord += 1
+			
+			# set brick version 2
+			if i == "l":
+				set_cell(x_cord,y_cord,5)
 				x_cord += 1
 			
 			# set blank background
@@ -39,7 +65,7 @@ func _ready() -> void:
 				PLAYER.position.y = y_cord*16
 				PLAYER.speed.x = 150.0
 				PLAYER.speed.y = 550.0
-				PLAYER.gravity = 1250.0
+				PLAYER.gravity = 0
 				x_cord += 1
 				
 			# set enemy object
