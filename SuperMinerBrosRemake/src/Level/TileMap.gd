@@ -2,6 +2,8 @@ extends TileMap
 
 # run when level starts
 func _ready() -> void:
+	# call correct world object
+	var world = get_tree().get_root()
 	
 	# create new file and open file
 	var file = File.new()
@@ -23,32 +25,32 @@ func _ready() -> void:
 			# set static background tiles
 			# set stone version 1
 			if i == "a":
-				set_cell(x_cord,y_cord,0)
+				call_deferred("set_cell",x_cord,y_cord,0)
 				x_cord += 1
 			
 			# set block version 1
 			if i == "b":
-				set_cell(x_cord,y_cord,1)
+				call_deferred("set_cell",x_cord,y_cord,1)
 				x_cord += 1
 			
 			# set brick version 1
 			if i == "c":
-				set_cell(x_cord,y_cord,2)
+				call_deferred("set_cell",x_cord,y_cord,2)
 				x_cord += 1
 				
 			# set stone version 2
 			if i == "j":
-				set_cell(x_cord,y_cord,3)
+				call_deferred("set_cell",x_cord,y_cord,3)
 				x_cord += 1
 			
 			# set block version 2
 			if i == "k":
-				set_cell(x_cord,y_cord,4)
+				call_deferred("set_cell",x_cord,y_cord,4)
 				x_cord += 1
 			
 			# set brick version 2
 			if i == "l":
-				set_cell(x_cord,y_cord,5)
+				call_deferred("set_cell",x_cord,y_cord,5)
 				x_cord += 1
 			
 			# set blank background
@@ -57,15 +59,16 @@ func _ready() -> void:
 				
 			# set player object
 			elif i == "P":
-				var PLAYER = preload("res://src/Actor/Player.tscn").instance()
-				add_child(PLAYER)
+				var load_PLAYER = preload("res://src/Actor/Player.tscn")
+				var PLAYER = load_PLAYER.instance()
+				world.call_deferred("add_child", PLAYER)
 				
 				# set position, speed and gravity
 				PLAYER.position.x = x_cord*16
 				PLAYER.position.y = y_cord*16
 				PLAYER.speed.x = 150.0
 				PLAYER.speed.y = 550.0
-				PLAYER.gravity = 0
+				PLAYER.gravity = 1250.0
 				x_cord += 1
 				
 			# set enemy object

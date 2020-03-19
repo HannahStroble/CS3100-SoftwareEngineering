@@ -91,7 +91,6 @@ drag_margin_left = 0.0
 drag_margin_right = 0.0
 
 [node name="HitBox" type="Area2D" parent="."]
-visible = false
 position = Vector2( -0.415779, -0.0831566 )
 space_override = 1
 collision_layer = 0
@@ -104,7 +103,6 @@ scale = Vector2( 1.09344, 0.9071 )
 shape = SubResource( 2 )
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 modulate = Color( 0.0784314, 1, 0.329412, 1 )
 position = Vector2( 4.75527, -9.39456 )
 collision_layer = 0
@@ -115,7 +113,6 @@ position = Vector2( 1.33579, -0.328073 )
 shape = SubResource( 3 )
 
 [node name="HurtBox2" type="Area2D" parent="."]
-visible = false
 modulate = Color( 0.0784314, 1, 0.329412, 1 )
 position = Vector2( -2.66759, -9.1626 )
 collision_layer = 0
