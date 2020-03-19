@@ -25,7 +25,7 @@ func _ready() -> void:
 			# set static background tiles
 			# set stone version 1
 			if i == "a":
-				call_deferred("set_cell",x_cord,y_cord,0)
+				call_deferred("set_cell",x_cord,y_cord,2)
 				x_cord += 1
 			
 			# set block version 1
@@ -46,7 +46,7 @@ func _ready() -> void:
 				
 			# set stone version 2
 			if i == "j":
-				call_deferred("set_cell",x_cord,y_cord,3)
+				call_deferred("set_cell",x_cord,y_cord,5)
 				x_cord += 1
 			
 			# set block version 2
