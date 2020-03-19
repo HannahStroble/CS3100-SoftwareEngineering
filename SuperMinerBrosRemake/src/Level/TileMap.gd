@@ -2,6 +2,8 @@ extends TileMap
 
 # run when level starts
 func _ready() -> void:
+	# call correct world object
+	var world = get_tree().get_root()
 	
 	# create new file and open file
 	var file = File.new()
@@ -13,16 +15,54 @@ func _ready() -> void:
 		return
 		
 	# position variables
-	var x_cord = 0
-	var y_cord = 0
+	var x_cord = 0.0
+	var y_cord = 0.0
 	
 	# while end of file is not reached
 	while not file.eof_reached():
 		for i in file.get_line():
 			
 			# set static background tiles
-			if i == "X":
-				set_cell(x_cord,y_cord,0)
+			# set stone version 1
+			if i == "a":
+				call_deferred("set_cell",x_cord,y_cord,0)
+				x_cord += 1
+			
+			# set block version 1
+			if i == "b":
+				call_deferred("set_cell",x_cord,y_cord,1)
+				x_cord += 1
+			
+			# set brick version 1
+			if i == "c":
+				#call_deferred("set_cell",x_cord,y_cord,2)
+				var brick = load("res://src/Objects/Brick.tscn").instance()
+				add_child(brick)
+				
+				# set position
+				brick.position.x = x_cord*16
+				brick.position.y = y_cord*16
+				x_cord += 1
+				
+			# set stone version 2
+			if i == "j":
+				call_deferred("set_cell",x_cord,y_cord,3)
+				x_cord += 1
+			
+			# set block version 2
+			if i == "k":
+				call_deferred("set_cell",x_cord,y_cord,4)
+				x_cord += 1
+			
+			# set brick version 2
+			if i == "l":
+				#call_deferred("set_cell",x_cord,y_cord,5)
+				var brick2 = load("res://src/Objects/Brick2.tscn").instance()
+				add_child(brick2)
+				
+				# set position
+				brick2.position.x = x_cord*16
+				brick2.position.y = y_cord*16
 				x_cord += 1
 			
 			# set blank background
@@ -31,8 +71,9 @@ func _ready() -> void:
 				
 			# set player object
 			elif i == "P":
-				var PLAYER = preload("res://src/Actor/Player.tscn").instance()
-				add_child(PLAYER)
+				var load_PLAYER = preload("res://src/Actor/Player.tscn")
+				var PLAYER = load_PLAYER.instance()
+				world.call_deferred("add_child", PLAYER)
 				
 				# set position, speed and gravity
 				PLAYER.position.x = x_cord*16
