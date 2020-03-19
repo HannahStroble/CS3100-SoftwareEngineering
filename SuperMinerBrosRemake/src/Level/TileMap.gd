@@ -15,8 +15,8 @@ func _ready() -> void:
 		return
 		
 	# position variables
-	var x_cord = 0
-	var y_cord = 0
+	var x_cord = 0.0
+	var y_cord = 0.0
 	
 	# while end of file is not reached
 	while not file.eof_reached():
@@ -35,7 +35,13 @@ func _ready() -> void:
 			
 			# set brick version 1
 			if i == "c":
-				call_deferred("set_cell",x_cord,y_cord,2)
+				#call_deferred("set_cell",x_cord,y_cord,2)
+				var brick = load("res://src/Objects/Brick.tscn").instance()
+				add_child(brick)
+				
+				# set position
+				brick.position.x = x_cord*16
+				brick.position.y = y_cord*16
 				x_cord += 1
 				
 			# set stone version 2
@@ -50,7 +56,13 @@ func _ready() -> void:
 			
 			# set brick version 2
 			if i == "l":
-				call_deferred("set_cell",x_cord,y_cord,5)
+				#call_deferred("set_cell",x_cord,y_cord,5)
+				var brick2 = load("res://src/Objects/Brick2.tscn").instance()
+				add_child(brick2)
+				
+				# set position
+				brick2.position.x = x_cord*16
+				brick2.position.y = y_cord*16
 				x_cord += 1
 			
 			# set blank background

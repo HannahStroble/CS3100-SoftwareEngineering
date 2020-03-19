@@ -3,8 +3,8 @@ jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
 bk                                                                    kb
 bk                                E                                   kb
 bk                      E        ccc                                  kb
-bk             E        lll                                           kb
-bk   P        ccc                                                     kb
-bk                                      l                l          h kb
-jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj
+bk c           E        lll                                           kb
+bk lc P       ccc                                                     kb
+bk                                      l  j              l         h kb
+jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj_0__jj   jjjjjjjjjjjjjjjj
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

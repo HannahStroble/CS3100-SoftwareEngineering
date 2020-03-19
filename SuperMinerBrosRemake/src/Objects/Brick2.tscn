@@ -5,7 +5,7 @@
 [ext_resource path="res://Assets/Terrain/Brick/pixil-frame-0.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 8, 7.14324 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 8, 0.783759 )
@@ -19,21 +19,24 @@ script = ExtResource( 2 )
 [node name="deadBoxSprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 3, 24.26, 16, 15.74 )
+region_rect = Rect2( 24, 3, 16, 16 )
 
 [node name="brickSprite" type="Sprite" parent="."]
+visible = false
 scale = Vector2( 1.01881, 0.995049 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 3, 3, 16, 16 )
+region_rect = Rect2( 16, 16, 16, 16 )
 
 [node name="brickShape" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -0.71875 )
 shape = SubResource( 1 )
 
 [node name="BrickHitBox" type="Area2D" parent="."]
 position = Vector2( 0, 3.26251 )
 
 [node name="HitBox" type="CollisionShape2D" parent="BrickHitBox"]
-position = Vector2( 1.49012e-08, 5.53463 )
+self_modulate = Color( 0.113725, 0.976471, 0.0156863, 1 )
+position = Vector2( 0, 3.94788 )
 shape = SubResource( 2 )
 [connection signal="body_entered" from="BrickHitBox" to="." method="_on_BrickHitBox_body_entered"]
