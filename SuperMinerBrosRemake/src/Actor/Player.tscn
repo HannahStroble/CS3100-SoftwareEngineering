@@ -1,0 +1,135 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.55832, 7 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 3.812, 8.958 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1.05771, 6.57176 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "I-Frame"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/path = NodePath("dino:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("dino:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0196078 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0196078 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Walk"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("dino:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 4, 5, 6, 7, 8, 9 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+collision_mask = 14
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+speed = Vector2( 300, 1500 )
+gravity = 300.0
+
+[node name="dino" type="Sprite" parent="."]
+position = Vector2( 1, -9 )
+texture = ExtResource( 2 )
+hframes = 24
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+modulate = Color( 0.054902, 0, 1, 1 )
+position = Vector2( 0.907874, -9.08518 )
+scale = Vector2( 0.533271, 0.954602 )
+shape = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2( 0.541548, -37.6191 )
+scale = Vector2( 0.723224, 1.44107 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_smoothed = true
+smoothing_enabled = true
+drag_margin_left = 0.0
+drag_margin_right = 0.0
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2( -0.415779, -0.0831566 )
+space_override = 1
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+modulate = Color( 0, 0.00392157, 0.0392157, 1 )
+position = Vector2( 1.24225, -7.89964 )
+scale = Vector2( 1.09344, 0.9071 )
+shape = SubResource( 2 )
+
+[node name="HurtBox" type="Area2D" parent="."]
+modulate = Color( 0.0784314, 1, 0.329412, 1 )
+position = Vector2( 4.75527, -9.39456 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2( 1.33579, -0.328073 )
+shape = SubResource( 3 )
+
+[node name="HurtBox2" type="Area2D" parent="."]
+modulate = Color( 0.0784314, 1, 0.329412, 1 )
+position = Vector2( -2.66759, -9.1626 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
+position = Vector2( -1.64043, -0.585674 )
+shape = SubResource( 3 )
+
+[node name="InvulnerabilityTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/I-Frame = SubResource( 4 )
+anims/Walk = SubResource( 5 )
+[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
+[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
+[connection signal="body_entered" from="HurtBox2" to="." method="_on_HurtBox_body_entered"]
