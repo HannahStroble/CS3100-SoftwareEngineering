@@ -65,6 +65,17 @@ func _ready() -> void:
 				brick2.position.y = y_cord*16
 				x_cord += 1
 			
+			# set firefloor
+			if i == "O":
+				var firefloor = load("res://src/Objects/Firefloor.tscn").instance()
+				add_child(firefloor)
+				
+				# set position
+				firefloor.position.x = x_cord*16
+				firefloor.position.y = y_cord*16
+				x_cord += 1
+			
+			
 			# set blank background
 			elif i == " " or i == "_":
 				x_cord += 1
