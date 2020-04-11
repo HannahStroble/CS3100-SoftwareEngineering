@@ -1,9 +1,11 @@
 extends StaticBody2D
 
 var numCoins = 0
+var breakable = true
 
 func set_coins(coins : int):
 	numCoins = coins
+	breakable = false
 
 
 func _on_BrickHitBox_body_entered(body):
@@ -18,8 +20,11 @@ func _on_BrickHitBox_body_entered(body):
 		numCoins -= 1
 		
 	if numCoins == 0:
-		get_node("brickSprite").hide() #used to change the block to a dead box upon impact
-		# queue_free() #used to delete the block upon impact
-		
+		if breakable:
+			# Delete the box on impact, if it doesn't hold anything.
+			queue_free()
+		else:
+			#used to change the block to a dead box upon impact
+			get_node("brickSprite").hide() 
 	return
 
