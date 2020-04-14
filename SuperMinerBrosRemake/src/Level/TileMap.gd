@@ -33,17 +33,22 @@ func _ready() -> void:
 				call_deferred("set_cell",x_cord,y_cord,1)
 				x_cord += 1
 			
-			# set brick version 1
-			if i == "c":
+			# set brick version 1 or single coin brick v1
+			if i == "c" or i == "A" or i == "d":
 				#call_deferred("set_cell",x_cord,y_cord,2)
 				var brick = load("res://src/Objects/Brick.tscn").instance()
+				if i == "A":
+					brick.set_coins(1)
+				elif i == "d":
+					brick.set_coins(2)
 				add_child(brick)
 				
 				# set position
 				brick.position.x = x_cord*16
 				brick.position.y = y_cord*16
 				x_cord += 1
-				
+			
+			
 			# set stone version 2
 			if i == "j":
 				call_deferred("set_cell",x_cord,y_cord,5)
