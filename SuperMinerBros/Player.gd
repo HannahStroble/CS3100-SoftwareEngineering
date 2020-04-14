@@ -68,3 +68,11 @@ func _physics_process(delta):
 	
 		
 	velocity = move_and_slide(velocity, FLOOR)
+
+
+func _on_Area2D_body_entered(body):
+	if "Player" in body.name:
+		# Decrease Health
+		print('ow')
+		# Bounce upward
+		velocity.y -= 30 * GRAVITY
