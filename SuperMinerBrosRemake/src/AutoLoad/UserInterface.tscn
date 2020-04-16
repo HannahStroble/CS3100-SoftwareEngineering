@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/Font/UI_THEME_SMALL.tres" type="Theme" id=1]
+[ext_resource path="res://src/AutoLoad/UserInterface.gd" type="Script" id=2]
+[ext_resource path="res://src/UserInterface/Title.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/UserInterface/Retry.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UserInterface/ChangeSceneButton.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/UserInterface/Quit.tscn" type="PackedScene" id=6]
+
+[node name="UserInterface" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 100.0
+margin_bottom = 60.0
+rect_scale = Vector2( 0.929058, 0.904375 )
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = 279.853
+margin_top = 1.0842e-019
+margin_right = 441.853
+margin_bottom = 19.0
+text = "Lives: %s"
+
+[node name="Label2" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -367.181
+margin_top = 7.62939e-006
+margin_right = -205.181
+margin_bottom = 19.0
+text = "Coins: %s"
+
+[node name="Label3" type="Label" parent="."]
+margin_top = 22.1147
+margin_right = 162.0
+margin_bottom = 41.1147
+text = "Score: %s"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 290.617
+margin_top = 22.1147
+margin_right = 441.617
+margin_bottom = 44.1147
+text = "Time: %s"
+
+[node name="PauseOverlay" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -312.144
+margin_top = -100.0
+margin_right = -522.144
+margin_bottom = -117.0
+rect_scale = Vector2( 2.5804, 1.58419 )
+color = Color( 0, 0, 0, 0.235294 )
+
+[node name="Title" parent="PauseOverlay" instance=ExtResource( 3 )]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = -73.1206
+margin_top = -48.5
+margin_right = 55.8793
+margin_bottom = -30.5
+rect_scale = Vector2( 1.14039, 1.13804 )
+text = "PAUSED"
+
+[node name="PauseMenu" type="VBoxContainer" parent="PauseOverlay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -106.491
+margin_top = -20.7621
+margin_right = 67.509
+margin_bottom = 81.2379
+rect_scale = Vector2( 1.03974, 0.519556 )
+
+[node name="Retry" parent="PauseOverlay/PauseMenu" instance=ExtResource( 4 )]
+margin_right = 174.0
+margin_bottom = 31.0
+
+[node name="ChangeSceneButtion" parent="PauseOverlay/PauseMenu" instance=ExtResource( 5 )]
+margin_top = 35.0
+margin_right = 174.0
+margin_bottom = 66.0
+text = "Main Menu"
+
+[node name="Quit" parent="PauseOverlay/PauseMenu" instance=ExtResource( 6 )]
+margin_top = 70.0
+margin_right = 174.0
+margin_bottom = 102.0

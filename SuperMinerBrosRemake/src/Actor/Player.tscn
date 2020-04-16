@@ -4,15 +4,9 @@
 [ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.55832, 7 )
+extents = Vector2( 1.55896, 8.52917 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3.812, 8.958 )
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 1.05771, 6.57176 )
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=2]
 resource_name = "I-Frame"
 length = 0.4
 tracks/0/type = "value"
@@ -40,7 +34,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0196078 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.0196078 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "Walk"
 length = 0.8
 loop = true
@@ -57,7 +51,14 @@ tracks/0/keys = {
 "values": [ 4, 5, 4, 5, 6, 7, 8, 9 ]
 }
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 7.69385, 2.69098 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 4.21701, 7.73956 )
+
 [node name="Player" type="KinematicBody2D"]
+position = Vector2( 315.629, 189.631 )
 collision_mask = 14
 script = ExtResource( 1 )
 __meta__ = {
@@ -71,65 +72,53 @@ position = Vector2( 1, -9 )
 texture = ExtResource( 2 )
 hframes = 24
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-modulate = Color( 0.054902, 0, 1, 1 )
-position = Vector2( 0.907874, -9.08518 )
-scale = Vector2( 0.533271, 0.954602 )
-shape = SubResource( 1 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2( 0.541548, -37.6191 )
-scale = Vector2( 0.723224, 1.44107 )
-current = true
-limit_left = 0
-limit_top = 0
-limit_smoothed = true
-smoothing_enabled = true
-drag_margin_left = 0.0
-drag_margin_right = 0.0
-
-[node name="HitBox" type="Area2D" parent="."]
-position = Vector2( -0.415779, -0.0831566 )
-space_override = 1
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-modulate = Color( 0, 0.00392157, 0.0392157, 1 )
-position = Vector2( 1.24225, -7.89964 )
-scale = Vector2( 1.09344, 0.9071 )
-shape = SubResource( 2 )
-
-[node name="HurtBox" type="Area2D" parent="."]
-modulate = Color( 0.0784314, 1, 0.329412, 1 )
-position = Vector2( 4.75527, -9.39456 )
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2( 1.33579, -0.328073 )
-shape = SubResource( 3 )
-
-[node name="HurtBox2" type="Area2D" parent="."]
-modulate = Color( 0.0784314, 1, 0.329412, 1 )
-position = Vector2( -2.66759, -9.1626 )
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox2"]
-position = Vector2( -1.64043, -0.585674 )
-shape = SubResource( 3 )
-
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
 
+[node name="Body" type="CollisionShape2D" parent="."]
+position = Vector2( 0.203094, -8.48274 )
+shape = SubResource( 1 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/I-Frame = SubResource( 4 )
-anims/Walk = SubResource( 5 )
-[connection signal="area_entered" from="HitBox" to="." method="_on_HitBox_area_entered"]
-[connection signal="body_entered" from="HitBox" to="." method="_on_HitBox_body_entered"]
-[connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
-[connection signal="body_entered" from="HurtBox2" to="." method="_on_HurtBox_body_entered"]
+anims/I-Frame = SubResource( 2 )
+anims/Walk = SubResource( 3 )
+
+[node name="EnemyDetector" type="Area2D" parent="."]
+position = Vector2( 0.463422, -6.70181 )
+collision_mask = 14
+
+[node name="Hit" type="CollisionShape2D" parent="EnemyDetector"]
+modulate = Color( 0.054902, 0, 1, 1 )
+position = Vector2( 0.264069, 7.50055 )
+scale = Vector2( 0.533271, 0.954602 )
+shape = SubResource( 4 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2( 0.604696, 0.568776 )
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 6400
+limit_bottom = 160
+smoothing_enabled = true
+smoothing_speed = 10.0
+drag_margin_left = 0.08
+drag_margin_top = 0.11
+drag_margin_right = 0.12
+drag_margin_bottom = 0.1
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="ED2" type="Area2D" parent="."]
+
+[node name="Hurt" type="CollisionShape2D" parent="ED2"]
+modulate = Color( 0.0627451, 0.690196, 0.0588235, 1 )
+position = Vector2( 0.732483, -9.51883 )
+shape = SubResource( 5 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.75473, -6.79234 )
+[connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
+[connection signal="body_entered" from="ED2" to="." method="_on_ED2_body_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

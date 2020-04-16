@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Actor/Enemy0.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Mob/skeleton.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.7556, 6.01168 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 0.535556, 0.212813 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 1 )
+speed = Vector2( 75, 550 )
+
+[node name="enemy" type="Sprite" parent="."]
+position = Vector2( -0.0391464, -9 )
+texture = ExtResource( 2 )
+hframes = 4
+frame = 1
+
+[node name="EHit" type="CollisionShape2D" parent="."]
+position = Vector2( -0.138165, -6.23435 )
+scale = Vector2( 0.272721, 1.02684 )
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0.314362, -8.9368 )
+scale = Vector2( 0.513901, 0.806292 )
+process_parent = true
+physics_process_parent = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( 0.164123, -17.1873 )
+scale = Vector2( 8.99291, -4.12631 )
+space_override = 1
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+modulate = Color( 0.0588235, 0.227451, 1, 1 )
+position = Vector2( 0.0317787, -0.34276 )
+scale = Vector2( 0.990394, 2.72583 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
