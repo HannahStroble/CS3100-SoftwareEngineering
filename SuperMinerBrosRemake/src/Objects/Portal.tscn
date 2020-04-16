@@ -63,6 +63,7 @@ tracks/1/keys = {
 }
 
 [node name="Portal" type="Area2D"]
+scale = Vector2( 2.17159, 1.37639 )
 monitorable = false
 collision_layer = 0
 script = ExtResource( 1 )
