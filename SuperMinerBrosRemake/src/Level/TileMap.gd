@@ -29,7 +29,7 @@ func _ready() -> void:
 				x_cord += 1
 
 			# set brick version 1
-			elif i == "c":
+			elif i == "q":
 				#call_deferred("set_cell",x_cord,y_cord,2)
 				var brick = preload("res://src/Objects/Brick.tscn")
 				var new_brick = brick.instance()
