@@ -1,0 +1,35 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://Assets/mystery/mystery_4.png" type="Texture" id=1]
+[ext_resource path="res://Assets/mystery/mystery_5.png" type="Texture" id=2]
+[ext_resource path="res://Assets/mystery/mystery_6.png" type="Texture" id=3]
+[ext_resource path="res://Assets/mystery/mystery_0.png" type="Texture" id=4]
+[ext_resource path="res://Assets/mystery/mystery_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/mystery/mystery_1.png" type="Texture" id=6]
+[ext_resource path="res://Assets/mystery/mystery_3.png" type="Texture" id=7]
+[ext_resource path="res://Assets/mystery/mystery_7.png" type="Texture" id=8]
+[ext_resource path="res://src/Objects/mysteryBox.gd" type="Script" id=9]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "idle",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8.21916, 7.92695 )
+
+[node name="mysteryBox" type="Area2D"]
+script = ExtResource( 9 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_mysteryBox_body_entered"]

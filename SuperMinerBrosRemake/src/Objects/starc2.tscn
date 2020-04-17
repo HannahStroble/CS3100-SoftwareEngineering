@@ -1,0 +1,35 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/starc2/starc2_0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/starc2/starc2_1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/starc2/starc2_5.png" type="Texture" id=3]
+[ext_resource path="res://Assets/starc2/starc2_6.png" type="Texture" id=4]
+[ext_resource path="res://Assets/starc2/starc2_2.png" type="Texture" id=5]
+[ext_resource path="res://Assets/starc2/starc2_3.png" type="Texture" id=6]
+[ext_resource path="res://Assets/starc2/starc2_4.png" type="Texture" id=7]
+[ext_resource path="res://src/Objects/starc2.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "idle",
+"speed": 20.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.4109, 7.19206 )
+
+[node name="starc2" type="Area2D"]
+script = ExtResource( 8 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0.269234, 0.628216 )
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_starc2_body_entered"]

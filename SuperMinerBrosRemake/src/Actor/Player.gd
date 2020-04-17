@@ -7,6 +7,7 @@ onready var health := 25.0
 onready var invulnerability_timer = $InvulnerabilityTimer
 onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
+var powerUpSpeedBonus = 1
 var time_dec = 16
 
 func _set_health(value):
@@ -65,7 +66,7 @@ func calculate_move_velocity(
 	) -> Vector2:
 
 	var new_velocity = linear_velocity
-	new_velocity.x = speed.x * direction.x
+	new_velocity.x = speed.x * direction.x * powerUpSpeedBonus
 	new_velocity.y += gravity * get_physics_process_delta_time()
 	if direction.y == -1.0:
 		new_velocity.y = speed.y * direction.y
@@ -86,8 +87,29 @@ func damage(amount):
 		_set_health(health-amount)
 		animation.play("I-Frame")
 
-
-
+func oneUpc1():
+	_set_health(max_health)
+	PlayerData.lives += 1
+	
+func oneUpc2():
+	_set_health(max_health)
+	PlayerData.lives += 1
+	
+func powerUpc1():
+	powerUpSpeedBonus = powerUpSpeedBonus + 1
+	
+func powerUpc2():
+	powerUpSpeedBonus = powerUpSpeedBonus + 1.5
+	
+func mysteryBox():
+	powerUpSpeedBonus = powerUpSpeedBonus + 5
+	
+func starc1():
+	pass
+	
+func starc2():
+	pass
+	
 
 
 

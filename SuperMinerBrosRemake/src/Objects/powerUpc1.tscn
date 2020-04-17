@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/powerUpc1/puc1_0.png" type="Texture" id=1]
+[ext_resource path="res://Assets/powerUpc1/puc1_2.png" type="Texture" id=2]
+[ext_resource path="res://Assets/powerUpc1/puc1_1.png" type="Texture" id=3]
+[ext_resource path="res://src/Objects/powerUpc1.gd" type="Script" id=4]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 15.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 7.47151, 5.60765 )
+
+[node name="powerUpc1" type="Area2D"]
+script = ExtResource( 4 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+animation = "idle"
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+[connection signal="body_entered" from="." to="." method="_on_powerUpc1_body_entered"]

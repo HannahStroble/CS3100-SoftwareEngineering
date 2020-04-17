@@ -71,6 +71,7 @@ gravity = 300.0
 position = Vector2( 1, -9 )
 texture = ExtResource( 2 )
 hframes = 24
+frame = 4
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.8
