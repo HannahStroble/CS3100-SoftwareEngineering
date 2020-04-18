@@ -17,13 +17,13 @@ collision_mask = 3
 script = ExtResource( 1 )
 
 [node name="deadBoxC1" type="Sprite" parent="."]
-visible = false
 position = Vector2( 0.203903, 0.16483 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 3, 24, 16, 16 )
 
 [node name="deadBoxC2" type="Sprite" parent="."]
+visible = false
 position = Vector2( 0.203903, 0.16483 )
 texture = ExtResource( 2 )
 region_enabled = true

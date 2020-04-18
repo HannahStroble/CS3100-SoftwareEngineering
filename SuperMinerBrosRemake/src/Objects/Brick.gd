@@ -35,29 +35,38 @@ func _on_BrickHitBox_body_entered(body):
 	
 	if itemsRemaining > 0:
 		# Add a new item
+		var item
 		if spawnItem == "coin":
-			var item = preload("res://src/Objects/Coin.tscn").instance()
-			world.call_deferred("add_child", item)
-			# set position
-			item.position.x = self.global_position.x
-			item.position.y = self.global_position.y - 16
-			itemsRemaining -= 1
-			# Show deadbox
-			if itemsRemaining == 0:
-				if variant == 1:
-					get_node("brickC1").hide()
-					get_node("deadBoxC1").show()
-				elif variant == 2:
-					get_node("brickC2").hide()
-					get_node("deadBoxC2").show()
-	
-			PlayerData.coins += 1
-			timer.start()
-			yield(timer, "timeout")
-			item.queue_free()
-			# Clear timer if this is the last coin
-			if itemsRemaining == 0:
-				timer.queue_free()
+			item = preload("res://src/Objects/Coin.tscn").instance()
+		elif spawnItem == "powerup":
+			item = preload("res://src/Objects/powerUpc1.tscn").instance()
+		elif spawnItem == "star":
+			item = preload("res://src/Objects/starc1.tscn").instance()
+		elif spawnItem == "1up":
+			item = preload("res://src/Objects/1upc1.tscn").instance()
+
+		world.call_deferred("add_child", item)
+		# set position
+		item.position.x = self.global_position.x
+		item.position.y = self.global_position.y - 16
+		itemsRemaining -= 1
+		# Show deadbox
+		if itemsRemaining == 0:
+			if variant == 1:
+				get_node("brickC1").hide()
+				get_node("deadBoxC1").show()
+			elif variant == 2:
+				get_node("brickC2").hide()
+				get_node("deadBoxC2").show()
+
+		# PlayerData.coins += 1
+		#timer.start()
+		#yield(timer, "timeout")
+		#item.queue_free()
+		# Clear timer if this is the last coin
+		#if itemsRemaining == 0:
+		#	timer.queue_free()
+			
 
 	return
 
