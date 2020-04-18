@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Assets/Background/Background.png" type="Texture" id=1]
 [ext_resource path="res://src/AutoLoad/UserInterface.tscn" type="PackedScene" id=2]
@@ -7,6 +7,13 @@
 [ext_resource path="res://src/Objects/Coin.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/Objects/Brick.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/Objects/Firefloor.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/Objects/1upc1.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/Objects/1upc2.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/Objects/powerUpc1.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/Objects/powerUpc2.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/Objects/mysteryBox.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/Objects/starc1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/Objects/starc2.tscn" type="PackedScene" id=14]
 
 [node name="LevelT" type="Node2D"]
 position = Vector2( 4.32286, -40 )
@@ -25,6 +32,9 @@ margin_bottom = 568.337
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect2" type="TextureRect" parent="BackgroundLayer"]
 margin_left = 1990.0
@@ -78,3 +88,24 @@ position = Vector2( 144.158, 300 )
 
 [node name="Firefloor" parent="." instance=ExtResource( 7 )]
 position = Vector2( 159.976, 352.253 )
+
+[node name="1upc1" parent="." instance=ExtResource( 8 )]
+position = Vector2( 314.349, 337.024 )
+
+[node name="1upc2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 314.045, 304.608 )
+
+[node name="powerUpc1" parent="." instance=ExtResource( 10 )]
+position = Vector2( 732.806, 321.756 )
+
+[node name="powerUpc2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 811.324, 320.853 )
+
+[node name="mysteryBox" parent="." instance=ExtResource( 12 )]
+position = Vector2( 940.382, 319.951 )
+
+[node name="starc1" parent="." instance=ExtResource( 13 )]
+position = Vector2( 572.161, 334.391 )
+
+[node name="starc2" parent="." instance=ExtResource( 14 )]
+position = Vector2( 605.554, 333.489 )
