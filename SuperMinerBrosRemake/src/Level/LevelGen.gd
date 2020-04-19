@@ -45,13 +45,79 @@ func _ready() -> void:
 				new_brick.position.y = y_cord * 16
 				x_cord += 1
 			
-			# Single coin box
+			# ? - Single coin box
 			elif i == "A":
 				#call_deferred("set_cell",x_cord,y_cord,2)
 				#TODO: Add item box sprite
 				var brick = preload("res://src/Objects/Brick.tscn")
 				var new_brick = brick.instance()
-				new_brick.configure(1, "coin", 1)
+				new_brick.configure(3, "coin", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# ? - Power Up
+			elif i == "B":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# ? - Star
+			elif i == "C":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# ? - 1up
+			elif i == "D":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "1up", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden power up
+			elif i == "F":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden star
+			elif i == "G":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden 1up
+			elif i == "H":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "1up", 1)
 				add_child(new_brick)
 				# set position
 				new_brick.position.x = x_cord * 16

@@ -24,6 +24,13 @@ func configure(color : int, item : String, amount : int) -> void:
 		get_node("brickC1").show()
 	elif color == 2:
 		get_node("brickC2").show()
+	elif color == 3:
+		get_node("itemBoxC1").show()
+	elif color == 4:
+		get_node("itemBoxC2").show()
+	elif color == 5:
+		#show no sprite to begin with
+		return
 		
 
 func _on_BrickHitBox_body_entered(body):
@@ -52,11 +59,13 @@ func _on_BrickHitBox_body_entered(body):
 		itemsRemaining -= 1
 		# Show deadbox
 		if itemsRemaining == 0:
-			if variant == 1:
+			if variant == 1 or variant == 3 or variant == 5:
 				get_node("brickC1").hide()
+				get_node("itemBoxC1").hide()
 				get_node("deadBoxC1").show()
-			elif variant == 2:
+			elif variant == 2 or variant == 4:
 				get_node("brickC2").hide()
+				get_node("itemBoxC2").hide()
 				get_node("deadBoxC2").show()
 
 		# PlayerData.coins += 1
