@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Objects/Brick.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Terrain/Brick/pixil-frame-0.png" type="Texture" id=2]
 [ext_resource path="res://Assets/Terrain/Brick/pixil-layer-Brick.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Terrain/Brick/allBlockTextures.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 8, 8 )
+extents = Vector2( 8.2039, 8 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 0.783759 )
+extents = Vector2( 8.2039, 1 )
 
 [node name="Brick" type="StaticBody2D"]
 position = Vector2( -0.203903, 1.83517 )
@@ -16,25 +17,61 @@ collision_layer = 16
 collision_mask = 3
 script = ExtResource( 1 )
 
-[node name="deadBoxSprite" type="Sprite" parent="."]
+[node name="itemBoxC1" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 45, 3, 16, 16 )
+
+[node name="itemBoxC2" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 66, 3, 16, 16 )
+
+[node name="deadBoxC1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.203903, 0.16483 )
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 3, 24.26, 16, 15.74 )
+region_rect = Rect2( 3, 24, 16, 16 )
 
-[node name="brickSprite" type="Sprite" parent="."]
+[node name="deadBoxC2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.203903, 0.16483 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 24, 24, 16.233, 16 )
+
+[node name="brickC1" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.203903, 0.16483 )
 scale = Vector2( 1.01881, 0.995049 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 3, 3, 16, 16 )
 
+[node name="brickC2" type="Sprite" parent="."]
+visible = false
+position = Vector2( 0.203903, 0.16483 )
+scale = Vector2( 1.01881, 0.995049 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 24, 3, 16, 16 )
+
 [node name="brickShape" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0.203903, 0.16483 )
 shape = SubResource( 1 )
 
 [node name="BrickHitBox" type="Area2D" parent="."]
+visible = false
+self_modulate = Color( 0.113725, 0.941176, 0.0431373, 1 )
 position = Vector2( 0, 3.26251 )
 
 [node name="HitBox" type="CollisionShape2D" parent="BrickHitBox"]
-position = Vector2( 1.49012e-008, 5.53463 )
+self_modulate = Color( 0.14902, 1, 0, 1 )
+position = Vector2( 0.203903, 5.90232 )
 shape = SubResource( 2 )
 
 [node name="Timer" type="Timer" parent="."]

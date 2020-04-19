@@ -8,4 +8,8 @@ margin_right = 76.0
 margin_bottom = 68.0
 text = "LevelLoad"
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+FILE_PATH = "res://src/Level/level1.txt"
 [connection signal="button_up" from="." to="." method="_on_button_up"]

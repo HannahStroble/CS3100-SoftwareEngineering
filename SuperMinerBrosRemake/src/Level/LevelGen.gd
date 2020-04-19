@@ -38,12 +38,136 @@ func _ready() -> void:
 				#call_deferred("set_cell",x_cord,y_cord,2)
 				var brick = preload("res://src/Objects/Brick.tscn")
 				var new_brick = brick.instance()
+				new_brick.configure(1, "", 0)
 				add_child(new_brick)
 				# set position
 				new_brick.position.x = x_cord * 16
 				new_brick.position.y = y_cord * 16
 				x_cord += 1
-
+			
+			# ? - Single coin box
+			elif i == "A":
+				#call_deferred("set_cell",x_cord,y_cord,2)
+				#TODO: Add item box sprite
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "coin", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# ? - Power Up
+			elif i == "B":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# ? - Star
+			elif i == "C":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# ? - 1up
+			elif i == "D":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(3, "1up", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden power up
+			elif i == "F":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden star
+			elif i == "G":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# hidden 1up
+			elif i == "H":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(5, "1up", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
+			# Multi-coin box:
+			elif i == "d":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(1, "coin", [1, 2, 3][randi() % 3])
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# powerup color 1
+			elif i == "e":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(1, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# star color 1
+			elif i == "f":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(1, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# 1up color 1
+			elif i == "g":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(1, "1up", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+				
 			# set stone version 2
 			elif i == "j":
 				Tiles.set_cell(x_cord, y_cord, 5)
@@ -56,12 +180,56 @@ func _ready() -> void:
 
 			elif i == "l":
 				#call_deferred("set_cell",x_cord,y_cord,5)
-				var brick2 = preload("res://src/Objects/Brick2.tscn")
+				var brick2 = preload("res://src/Objects/Brick.tscn")
 				var new_brick2 = brick2.instance()
+				new_brick2.configure(2, "", 0)
 				add_child(new_brick2)
 				# set position
 				new_brick2.position.x = x_cord * 16
 				new_brick2.position.y = y_cord * 16
+				x_cord += 1
+			# Multi-coin box, color 2
+			elif i == "m":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(2, "coin", [1, 2, 3][randi() % 3])
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# powerup color 2
+			elif i == "n":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(2, "powerup", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# star color 2
+			elif i == "o":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(2, "star", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
+				x_cord += 1
+			
+			# 1up color 2
+			elif i == "p":
+				var brick = preload("res://src/Objects/Brick.tscn")
+				var new_brick = brick.instance()
+				new_brick.configure(2, "1up", 1)
+				add_child(new_brick)
+				# set position
+				new_brick.position.x = x_cord * 16
+				new_brick.position.y = y_cord * 16
 				x_cord += 1
 
 			# set player object
