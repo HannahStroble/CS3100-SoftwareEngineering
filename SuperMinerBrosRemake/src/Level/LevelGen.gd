@@ -22,9 +22,13 @@ func _ready() -> void:
 	print(whole_file.split("|"))
 	while not file.eof_reached():
 		for i in file.get_line():
-
+			
+			# set x forward for next level
+			if i == "|":
+				x_cord += 30
+				
 			# set stone version 1
-			if i == "a":
+			elif i == "a":
 				Tiles.set_cell(x_cord, y_cord, 2)
 				x_cord += 1
 
@@ -178,6 +182,7 @@ func _ready() -> void:
 				Tiles.set_cell(x_cord, y_cord, 4)
 				x_cord += 1
 
+			# set brick version 2
 			elif i == "l":
 				#call_deferred("set_cell",x_cord,y_cord,5)
 				var brick2 = preload("res://src/Objects/Brick.tscn")
@@ -188,6 +193,7 @@ func _ready() -> void:
 				new_brick2.position.x = x_cord * 16
 				new_brick2.position.y = y_cord * 16
 				x_cord += 1
+				
 			# Multi-coin box, color 2
 			elif i == "m":
 				var brick = preload("res://src/Objects/Brick.tscn")
@@ -232,8 +238,8 @@ func _ready() -> void:
 				new_brick.position.y = y_cord * 16
 				x_cord += 1
 
-			# set player object
-			elif i == "P":
+			# set player spawn object
+			elif i == "<":
 				PLAYER.position.x = x_cord * 16
 				PLAYER.position.y = y_cord * 16
 				PLAYER.speed.x = 150.0
@@ -241,7 +247,7 @@ func _ready() -> void:
 				PLAYER.gravity = 1250.0
 				x_cord += 1
 
-			# set enemy object
+			# set enemy 0
 			elif i == "0":
 				var ENEMY0 = preload("res://src/Actor/Enemy0.tscn")
 				var new_ENEMY0 = ENEMY0.instance()
@@ -251,6 +257,7 @@ func _ready() -> void:
 				new_ENEMY0.position.y = y_cord * 16
 				x_cord += 1
 
+			# spawn single coin
 			elif i == "E":
 				var coin = preload("res://src/Objects/Coin.tscn")
 				var new_coin = coin.instance()
@@ -261,6 +268,7 @@ func _ready() -> void:
 
 				x_cord += 1
 
+			# dead box - CHANGE THIS TO A DEADBOX
 			elif i == "h":
 				var portal = preload("res://src/Objects/Portal.tscn")
 				var new_portal = portal.instance()
@@ -268,6 +276,18 @@ func _ready() -> void:
 				# set position
 				new_portal.position.x = x_cord * 16
 				new_portal.position.y = y_cord * 16
+				x_cord += 1
+				
+			# firefloors
+			
+			
+			# end level flag
+			elif i == "~":
+				var flag = preload("res://src/Objects/Flagpole.tscn")
+				var new_flag = flag.instance()
+				new_flag.position.x = x_cord * 16
+				new_flag.position.y = y_cord * 16
+				self.call_deferred("add_child", new_flag)
 				x_cord += 1
 
 			# set blank background
