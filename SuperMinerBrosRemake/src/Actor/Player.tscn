@@ -66,6 +66,8 @@ __meta__ = {
 }
 speed = Vector2( 300, 1500 )
 gravity = 300.0
+stomp_impulse = null
+max_health = null
 
 [node name="dino" type="Sprite" parent="."]
 position = Vector2( 1, -9 )

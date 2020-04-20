@@ -3,21 +3,11 @@ extends Actor
 signal health_updated()
 export var stomp_impulse := 500.00
 export var max_health := 75.0 # 25.0 small, 50.0 big, 75.0 powerup
-onready var health := 25.0
 onready var invulnerability_timer = $InvulnerabilityTimer
 onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
 var powerUpSpeedBonus = 1
 var time_dec = 16
-
-func _set_health(value):
-	var prev_health = health
-	health = clamp(value, 0, max_health)
-	if health != prev_health:
-		emit_signal("health_updated", health)
-		if health == 0:
-			queue_free()
-			PlayerData.deaths += 1
 
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
@@ -26,6 +16,10 @@ func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 
 func _on_ED2_body_entered(body):
 	if body.get_filename().get_file() == "Enemy0.tscn":
+		damage(25.0)
+	elif body.get_filename().get_file() == "Enemy1.tscn":
+		damage(25.0)
+	elif body.get_filename().get_file() == "Enemy2.tscn":
 		damage(25.0)
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -82,11 +76,21 @@ func calculate_stomp_velocity(
 	return out
 
 func damage(amount):
-	if invulnerability_timer.is_stopped():
+	if PlayerData.health - amount <= 0:
+		queue_free()
+		PlayerData.deaths += 1
+		print(PlayerData.health)
+	elif invulnerability_timer.is_stopped():
 		invulnerability_timer.start()
-		_set_health(health-amount)
+		PlayerData.health -= amount
 		animation.play("I-Frame")
-
+		
+func _set_health(value):
+	var prev_health
+	var health = clamp(value, 0, max_health)
+	if health != prev_health:
+		emit_signal("health_updated", health)
+			
 func oneUpc1():
 	_set_health(max_health)
 	PlayerData.lives += 1

@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/Actor/Enemy1.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Mob/Spider Sprite Sheet.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 44.9119, 5.30652 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1.1007, 0.313303 )
+
+[node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 9
+script = ExtResource( 1 )
+speed = Vector2( 75, 550 )
+
+[node name="enemy" type="Sprite" parent="."]
+position = Vector2( -0.876861, -15.4836 )
+scale = Vector2( 1.79718, 2.27535 )
+texture = ExtResource( 2 )
+hframes = 9
+
+[node name="EHit" type="CollisionShape2D" parent="."]
+position = Vector2( 0.329399, -6.25823 )
+scale = Vector2( 0.272721, 1.02684 )
+shape = SubResource( 1 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+position = Vector2( 0.408447, -9.43794 )
+scale = Vector2( -1.46045, 1.02267 )
+process_parent = true
+physics_process_parent = true
+
+[node name="HurtBox" type="Area2D" parent="."]
+position = Vector2( 0.164123, -17.2818 )
+scale = Vector2( 8.99291, -4.12631 )
+space_override = 1
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+modulate = Color( 0.0588235, 0.227451, 1, 1 )
+position = Vector2( -0.032844, -0.496983 )
+scale = Vector2( 0.990394, 2.72583 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]

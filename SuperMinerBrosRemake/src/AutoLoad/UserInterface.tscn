@@ -11,7 +11,8 @@
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 100.0
+margin_left = -1.0
+margin_right = 99.0
 margin_bottom = 60.0
 rect_scale = Vector2( 0.929058, 0.904375 )
 theme = ExtResource( 1 )
@@ -87,6 +88,7 @@ margin_top = 35.0
 margin_right = 174.0
 margin_bottom = 66.0
 text = "Main Menu"
+next_scene_path = ""
 
 [node name="Quit" parent="PauseOverlay/PauseMenu" instance=ExtResource( 6 )]
 margin_top = 70.0
