@@ -1,13 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/powerUpc1/puc1_0.png" type="Texture" id=1]
-[ext_resource path="res://Assets/powerUpc1/puc1_2.png" type="Texture" id=2]
+[ext_resource path="res://src/Objects/powerUpc1.gd" type="Script" id=1]
+[ext_resource path="res://Assets/powerUpc1/puc1_0.png" type="Texture" id=2]
 [ext_resource path="res://Assets/powerUpc1/puc1_1.png" type="Texture" id=3]
-[ext_resource path="res://src/Objects/powerUpc1.gd" type="Script" id=4]
+[ext_resource path="res://Assets/powerUpc1/puc1_2.png" type="Texture" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "idle",
 "speed": 15.0
@@ -17,12 +17,12 @@ animations = [ {
 extents = Vector2( 7.47151, 5.60765 )
 
 [node name="powerUpc1" type="Area2D"]
-script = ExtResource( 4 )
+script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -88,7 +88,6 @@ margin_top = 35.0
 margin_right = 174.0
 margin_bottom = 66.0
 text = "Main Menu"
-next_scene_path = ""
 
 [node name="Quit" parent="PauseOverlay/PauseMenu" instance=ExtResource( 6 )]
 margin_top = 70.0

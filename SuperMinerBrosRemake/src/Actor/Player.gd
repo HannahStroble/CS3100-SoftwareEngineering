@@ -1,29 +1,32 @@
 extends Actor
 
-signal health_updated()
 export var stomp_impulse := 500.00
 export var max_health := 75.0 # 25.0 small, 50.0 big, 75.0 powerup
 onready var invulnerability_timer = $InvulnerabilityTimer
 onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
-var powerUpSpeedBonus = 1
-var time_dec = 16
+onready var sprite = get_node("dino")
+var time_dec = 32
 
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
-	if area.name == "HurtBox":
+	print(area.name)
+	if area.get_collision_layer_bit(1) == true:
 		_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
 func _on_ED2_body_entered(body):
-	if body.get_filename().get_file() == "Enemy0.tscn":
-		damage(25.0)
+	if invulnerability_timer.is_stopped() == false:
+		body.queue_free()
+	elif body.get_filename().get_file() == "Enemy0.tscn":
+		shrink()
 	elif body.get_filename().get_file() == "Enemy1.tscn":
-		damage(25.0)
+		shrink()
 	elif body.get_filename().get_file() == "Enemy2.tscn":
-		damage(25.0)
+		shrink()
 
 func _on_VisibilityNotifier2D_screen_exited():
-	damage(1000)
+	queue_free()
+	PlayerData.lives -= 1
 
 
 func _physics_process(delta: float) -> void:
@@ -32,12 +35,12 @@ func _physics_process(delta: float) -> void:
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 
 	if direction.x == 1 and _velocity.x != 0:
-		camera.limit_left += 1
+		camera.limit_left += 2
 	if time_dec == 0:
 		PlayerData.time -= 1
 		if PlayerData.time == 0:
-			damage(1000)
-		time_dec = 16
+			queue_free()
+		time_dec = 32
 	time_dec -= 1
 	
 #Added move_right, move_left, and jump
@@ -60,7 +63,7 @@ func calculate_move_velocity(
 	) -> Vector2:
 
 	var new_velocity = linear_velocity
-	new_velocity.x = speed.x * direction.x * powerUpSpeedBonus
+	new_velocity.x = speed.x * direction.x
 	new_velocity.y += gravity * get_physics_process_delta_time()
 	if direction.y == -1.0:
 		new_velocity.y = speed.y * direction.y
@@ -75,45 +78,37 @@ func calculate_stomp_velocity(
 	out.y = -impulse
 	return out
 
-func damage(amount):
-	if PlayerData.health - amount <= 0:
+
+func grow():
+	self.scale.y *= 2
+
+func shrink():
+	if invulnerability_timer.is_stopped() == false:
+		return
+	if PlayerData.size == 1:#small
 		queue_free()
 		PlayerData.deaths += 1
-		print(PlayerData.health)
-	elif invulnerability_timer.is_stopped():
+	elif PlayerData.size == 2:#large
+		PlayerData.size = 1
+		self.scale.y *= .5
 		invulnerability_timer.start()
-		PlayerData.health -= amount
 		animation.play("I-Frame")
-		
-func _set_health(value):
-	var prev_health
-	var health = clamp(value, 0, max_health)
-	if health != prev_health:
-		emit_signal("health_updated", health)
-			
-func oneUpc1():
-	_set_health(max_health)
-	PlayerData.lives += 1
+	elif PlayerData.size == 3:#powerup
+		PlayerData.size = 2
+		invulnerability_timer.start()
+		animation.play("I-Frame")
 	
-func oneUpc2():
-	_set_health(max_health)
-	PlayerData.lives += 1
-	
-func powerUpc1():
-	powerUpSpeedBonus = powerUpSpeedBonus + 1
-	
-func powerUpc2():
-	powerUpSpeedBonus = powerUpSpeedBonus + 1.5
-	
-func mysteryBox():
-	powerUpSpeedBonus = powerUpSpeedBonus + 5
 	
 func starc1():
-	pass
+	invulnerability_timer.wait_time = 2
+	invulnerability_timer.start()
+	animation.play("Star")
+	invulnerability_timer.wait_time = .8
+
 	
-func starc2():
-	pass
+func iframes():
+	invulnerability_timer.set_wait_time(3.97)
+	invulnerability_timer.start()
+	animation.play("Star")
 	
-
-
-
+	
