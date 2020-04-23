@@ -5,6 +5,7 @@
 [ext_resource path="res://src/Sounds/AudioPlayer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 53.8741
 
 [node name="Coin" type="Area2D"]
 position = Vector2( -0.104668, -0.323532 )
@@ -14,12 +15,13 @@ collision_layer = 4
 script = ExtResource( 1 )
 
 [node name="coin" type="Sprite" parent="."]
-position = Vector2( -0.563908, 2.20404 )
+position = Vector2( 43.6632, 48.7583 )
+scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.563929, 1.02296 )
-scale = Vector2( 3.33007, 3.35953 )
+position = Vector2( 43.6632, 48.7583 )
+scale = Vector2( 0.5, 0.5 )
 shape = SubResource( 1 )
 
 [node name="AudioPlayer" parent="." instance=ExtResource( 3 )]

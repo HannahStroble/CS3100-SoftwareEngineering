@@ -7,6 +7,6 @@ bk                             E                                EEEEEEkb|b   b|
 bk                      E     ccc                        j     EEEEEEEkb|b   b|
 bk            nE        lll                            jj      aaaaaaakb|b   b|
 bk            ccc                                    jj               kb|b   b|
-bk  <                                   ~     j     j               h kb|b   b|
+bk  <         j                         ~     j     j               h kb|b   b|
 jjjjjjjjjjjjjjjjjjjOOjjjjjjjjjjjjjjjjjjjjjjjjjj_0__jj E jjjjjjjjjjjjjjjj|jj0_b|
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa|aaaaa|
