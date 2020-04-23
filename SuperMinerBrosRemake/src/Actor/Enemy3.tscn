@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Actor/Enemy3.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Mob/Slime_Medium_Red.png" type="Texture" id=2]
+[ext_resource path="res://src/Sounds/AudioPlayer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.7158, 6.14602 )
@@ -21,6 +22,8 @@ scale = Vector2( 0.920683, 0.721372 )
 texture = ExtResource( 2 )
 vframes = 4
 hframes = 4
+
+[node name="AudioPlayer" parent="." instance=ExtResource( 3 )]
 
 [node name="EHit" type="CollisionShape2D" parent="."]
 position = Vector2( -0.240189, -9.10615 )

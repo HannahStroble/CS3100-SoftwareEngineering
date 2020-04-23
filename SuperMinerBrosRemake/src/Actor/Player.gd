@@ -8,6 +8,11 @@ onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
 var powerUpSpeedBonus = 1
 var time_dec = 16
+onready var Sound_FX = get_node("AudioPlayer")
+onready var Jump_Sound_fx = load("res://Assets/Sounds/Player_Jump.wav")
+onready var Death_Sound_fx = load("res://Assets/Sounds/Death_Sound_Player.wav")
+var sound_done = false
+
 
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
@@ -30,6 +35,9 @@ func _physics_process(delta: float) -> void:
 	var direction: = get_dir()
 	_velocity = calculate_move_velocity(_velocity, direction, speed)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
+
+	if direction.y == -1.0:
+		sound_done = Sound_FX._play_sound(Jump_Sound_fx)
 
 	if direction.x == 1 and _velocity.x != 0:
 		camera.limit_left += 1
@@ -77,6 +85,7 @@ func calculate_stomp_velocity(
 
 func damage(amount):
 	if PlayerData.health - amount <= 0:
+		#sound_done = Sound_FX._play_sound(Death_Sound_fx)
 		queue_free()
 		PlayerData.deaths += 1
 		print(PlayerData.health)

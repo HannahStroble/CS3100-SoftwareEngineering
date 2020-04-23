@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
+[ext_resource path="res://src/Sounds/AudioPlayer.tscn" type="PackedScene" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.55896, 8.52917 )
@@ -66,8 +67,8 @@ __meta__ = {
 }
 speed = Vector2( 300, 1500 )
 gravity = 300.0
-stomp_impulse = null
-max_health = null
+
+[node name="AudioPlayer" parent="." instance=ExtResource( 3 )]
 
 [node name="dino" type="Sprite" parent="."]
 position = Vector2( 1, -9 )
