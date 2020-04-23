@@ -20,7 +20,7 @@ __meta__ = {
 layer = -1
 
 [node name="Background" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 494, 128 )
+position = Vector2( 494, 131.896 )
 texture = ExtResource( 3 )
 
 [node name="Title" parent="." instance=ExtResource( 4 )]

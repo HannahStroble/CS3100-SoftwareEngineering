@@ -13,7 +13,6 @@ func _ready():
 	size()
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
-	print(area.name)
 	if area.get_collision_layer_bit(1) == true:
 		_velocity = calculate_stomp_velocity(_velocity, stomp_impulse)
 
@@ -104,6 +103,7 @@ func shrink():
 		invulnerability_timer.start()
 		animation.play("I-Frame")
 	elif PlayerData.size == 3:#powerup
+		PlayerData.power_up = false
 		PlayerData.size = 2
 		invulnerability_timer.start()
 		animation.play("I-Frame")
