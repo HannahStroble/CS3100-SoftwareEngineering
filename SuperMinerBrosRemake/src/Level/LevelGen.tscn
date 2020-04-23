@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/Level/LevelGen.gd" type="Script" id=1]
 [ext_resource path="res://src/Level/TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Actor/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/AutoLoad/UserInterface.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Background/Background.png" type="Texture" id=5]
 
 [node name="LevelGen" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,7 +17,12 @@ position = Vector2( 320.732, 167.097 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UserInterface" parent="CanvasLayer" instance=ExtResource( 4 )]
-margin_top = 10.0
-margin_right = 208.0
-margin_bottom = 64.0
-rect_scale = Vector2( 0.81875, 0.933224 )
+margin_top = 0.587219
+margin_bottom = 60.5872
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Sprite" parent="CanvasLayer2"]
+position = Vector2( 500, 375.587 )
+texture = ExtResource( 5 )

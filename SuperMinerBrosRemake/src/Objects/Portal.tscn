@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/Objects/Portal.gd" type="Script" id=1]
-[ext_resource path="res://Assets/portal/Purple Portal Sprite Sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/Level/LevelTemplate.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Flagpole/flag.png" type="Texture" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 7.22726
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 1.70786, 21.9984 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "Fade In"
@@ -67,16 +68,10 @@ scale = Vector2( 2.17159, 1.37639 )
 monitorable = false
 collision_layer = 0
 script = ExtResource( 1 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 3.23535, -3.3971 )
-scale = Vector2( 0.703519, 0.671411 )
-texture = ExtResource( 2 )
-vframes = 3
-hframes = 7
+next_scene = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.329853, -0.395824 )
+position = Vector2( -0.261908, -30.675 )
 scale = Vector2( 0.635897, 1.92452 )
 shape = SubResource( 1 )
 
@@ -92,4 +87,9 @@ color = Color( 1, 1, 1, 0 )
 autoplay = "START"
 "anims/Fade In" = SubResource( 2 )
 anims/START = SubResource( 3 )
+
+[node name="flag" type="Sprite" parent="."]
+position = Vector2( 0.408849, -29.8903 )
+scale = Vector2( 0.27291, 0.542616 )
+texture = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

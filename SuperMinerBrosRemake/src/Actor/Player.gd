@@ -5,9 +5,12 @@ export var max_health := 75.0 # 25.0 small, 50.0 big, 75.0 powerup
 onready var invulnerability_timer = $InvulnerabilityTimer
 onready var animation = $AnimationPlayer
 onready var camera = $Camera2D
-onready var sprite = get_node("dino")
+onready var dino = get_node("dino")
 var time_dec = 32
 
+
+func _ready():
+	size()
 
 func _on_EnemyDetector_area_entered(area: Area2D) -> void:
 	print(area.name)
@@ -23,17 +26,25 @@ func _on_ED2_body_entered(body):
 		shrink()
 	elif body.get_filename().get_file() == "Enemy2.tscn":
 		shrink()
-
+	elif body.get_filename().get_file() == "Enemy3.tscn":
+		shrink()
+	elif body.get_filename().get_file() == "Enemy4.tscn":
+		shrink()
+		
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 	PlayerData.lives -= 1
 
-
+func _on_InvulnerabilityTimer_timeout():
+	animation.play("Idle")
+	
 func _physics_process(delta: float) -> void:
 	var direction: = get_dir()
 	_velocity = calculate_move_velocity(_velocity, direction, speed)
 	_velocity = move_and_slide(_velocity, FLOOR_NORMAL)
 
+	if PlayerData.power_up == true and Input.is_action_just_pressed("shoot"):
+		self.gravity *= -1
 	if direction.x == 1 and _velocity.x != 0:
 		camera.limit_left += 2
 	if time_dec == 0:
@@ -78,7 +89,6 @@ func calculate_stomp_velocity(
 	out.y = -impulse
 	return out
 
-
 func grow():
 	self.scale.y *= 2
 
@@ -99,16 +109,12 @@ func shrink():
 		animation.play("I-Frame")
 	
 	
-func starc1():
-	invulnerability_timer.wait_time = 2
-	invulnerability_timer.start()
-	animation.play("Star")
-	invulnerability_timer.wait_time = .8
-
-	
 func iframes():
 	invulnerability_timer.set_wait_time(3.97)
 	invulnerability_timer.start()
 	animation.play("Star")
 	
+func size():
+	if PlayerData.size == 2 or PlayerData.size == 3:
+		self.scale.y *= 2
 	

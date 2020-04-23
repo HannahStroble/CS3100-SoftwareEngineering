@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
+[ext_resource path="res://src/Temp/Jump.tres" type="Animation" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 2.39233, 6.11247 )
+extents = Vector2( 1.55896, 8.52917 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "I-Frame"
@@ -35,7 +36,23 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Star"
+resource_name = "Idle"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("dino:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 3.97
 tracks/0/type = "value"
 tracks/0/path = NodePath("dino:modulate")
@@ -48,22 +65,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 0.662745, 0.164706, 0.164706, 1 ), Color( 0.658824, 0.396078, 0.396078, 1 ), Color( 1, 1, 1, 1 ) ]
-}
-
-[sub_resource type="Animation" id=4]
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("dino:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 4, 5, 4, 5, 6, 7, 8, 9 ]
 }
 
 [sub_resource type="RectangleShape2D" id=5]
@@ -79,27 +80,27 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
-speed = Vector2( 300, 1500 )
-gravity = 300.0
 
 [node name="dino" type="Sprite" parent="."]
 position = Vector2( 1.1221, -9.12209 )
 texture = ExtResource( 2 )
 hframes = 24
-frame = 4
+frame = 3
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
 
 [node name="Body" type="CollisionShape2D" parent="."]
-position = Vector2( 0.203094, -7.48274 )
+position = Vector2( 0.203094, -8.48274 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/I-Frame = SubResource( 2 )
-anims/Star = SubResource( 3 )
-anims/Walk = SubResource( 4 )
+anims/Idle = SubResource( 3 )
+anims/Jump = ExtResource( 3 )
+anims/Star = SubResource( 4 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 position = Vector2( 0.463422, -6.70181 )
@@ -116,7 +117,7 @@ scale = Vector2( 0.604696, 0.568776 )
 current = true
 limit_left = 0
 limit_top = 0
-limit_right = 6400
+limit_right = 2500
 limit_bottom = 160
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -136,6 +137,7 @@ shape = SubResource( 6 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 position = Vector2( 0.8768, -7.64694 )
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_InvulnerabilityTimer_timeout"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="ED2" to="." method="_on_ED2_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

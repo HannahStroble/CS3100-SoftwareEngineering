@@ -19,32 +19,31 @@ theme = ExtResource( 1 )
 script = ExtResource( 2 )
 
 [node name="Label" type="Label" parent="."]
-margin_left = 279.853
-margin_top = 1.0842e-019
-margin_right = 441.853
-margin_bottom = 19.0
+margin_left = 1.71109
+margin_top = 38.6482
+margin_right = 163.711
+margin_bottom = 57.6482
 text = "Lives: %s"
 
 [node name="Label2" type="Label" parent="."]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -367.181
-margin_top = 7.62939e-006
-margin_right = -205.181
-margin_bottom = 19.0
+margin_left = -368.289
+margin_top = 57.6482
+margin_right = -206.289
+margin_bottom = 76.6482
 text = "Coins: %s"
 
 [node name="Label3" type="Label" parent="."]
-margin_top = 22.1147
+margin_top = 1.90735e-006
 margin_right = 162.0
-margin_bottom = 41.1147
+margin_bottom = 19.0
 text = "Score: %s"
 
 [node name="Label4" type="Label" parent="."]
-margin_left = 290.617
-margin_top = 22.1147
-margin_right = 441.617
-margin_bottom = 44.1147
+margin_top = 19.0
+margin_right = 151.0
+margin_bottom = 38.0
 text = "Time: %s"
 
 [node name="PauseOverlay" type="ColorRect" parent="."]
@@ -88,6 +87,7 @@ margin_top = 35.0
 margin_right = 174.0
 margin_bottom = 66.0
 text = "Main Menu"
+next_scene_path = ""
 
 [node name="Quit" parent="PauseOverlay/PauseMenu" instance=ExtResource( 6 )]
 margin_top = 70.0

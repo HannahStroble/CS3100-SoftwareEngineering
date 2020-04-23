@@ -17,6 +17,7 @@ animations = [ {
 extents = Vector2( 7.71263, 5.20419 )
 
 [node name="powerUpc2" type="Area2D"]
+rotation = -1.57711
 script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]

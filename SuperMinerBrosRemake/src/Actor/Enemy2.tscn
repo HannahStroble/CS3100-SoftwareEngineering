@@ -13,12 +13,13 @@ extents = Vector2( 1.07779, 0.265502 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
-speed = Vector2( 75, 550 )
+speed = Vector2( 25, 400 )
 
 [node name="enemy" type="Sprite" parent="."]
 position = Vector2( -0.876861, -15.4836 )
 scale = Vector2( 1.79718, 2.27535 )
 texture = ExtResource( 2 )
+flip_h = true
 hframes = 9
 
 [node name="EHit" type="CollisionShape2D" parent="."]
@@ -43,4 +44,5 @@ modulate = Color( 0.0588235, 0.227451, 1, 1 )
 position = Vector2( 0.0643582, -0.539352 )
 scale = Vector2( 1.24979, 2.72583 )
 shape = SubResource( 2 )
+[connection signal="screen_exited" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_screen_exited"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]

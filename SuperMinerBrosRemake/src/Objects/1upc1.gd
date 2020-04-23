@@ -13,3 +13,5 @@ func _on_1upc1_body_entered(body):
 	elif "Player" in body.name and PlayerData.size == 2 and self.get_collision_mask_bit(0) == true:
 		PlayerData.lives += 1
 		AudioPlayer.play()
+		sprite.visible = false
+		self.set_collision_mask_bit(0,false)

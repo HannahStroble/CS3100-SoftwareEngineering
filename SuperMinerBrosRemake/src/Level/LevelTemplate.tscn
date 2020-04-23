@@ -54,8 +54,6 @@ tile_data = PoolIntArray( 131071, 0, 0, 65536, 0, 0, 65537, 0, 0, 65538, 0, 0, 6
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 35.6771, 346.324 )
-speed = Vector2( 150, 550 )
-gravity = 1250.0
 
 [node name="Coin" parent="." instance=ExtResource( 6 )]
 position = Vector2( 167.551, 317.825 )
