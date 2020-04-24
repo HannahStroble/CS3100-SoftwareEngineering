@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/kisspng-flappy-bird-app-store-sprite-scratch-5ac32182e1e824.4237993115227375389253.png-018589a23b5d8cccc156839a82cdd022.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Assets/Player/kisspng-flappy-bird-app-store-sprite-scratch-5ac32182e1e824.4237993115227375389253.png"
+dest_files=[ "res://.import/kisspng-flappy-bird-app-store-sprite-scratch-5ac32182e1e824.4237993115227375389253.png-018589a23b5d8cccc156839a82cdd022.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/Temp/Jump.tres" type="Animation" id=1]
+[ext_resource path="res://src/Temp/Running.tres" type="Animation" id=2]
+[ext_resource path="res://src/Temp/Walking.tres" type="Animation" id=3]
+[ext_resource path="res://src/Temp/idle.tres" type="Animation" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 12 ]
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+anims/Jump = ExtResource( 1 )
+anims/Running = ExtResource( 2 )
+anims/Walking = ExtResource( 3 )
+anims/fall = SubResource( 1 )
+anims/idle = ExtResource( 4 )
