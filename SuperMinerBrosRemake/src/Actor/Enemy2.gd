@@ -15,12 +15,17 @@ func _ready() -> void:
 	_velocity.x = -speed.x
 	
 func _physics_process(delta: float) -> void:
-	
+	if sprite.frame == 1:
+		return
 	_velocity.y += gravity * delta
 	if is_on_floor() and jumping == true:
-		_velocity.y = -1.25*speed.y
+		_velocity.y = -1*speed.y
 	if is_on_wall():
 		_velocity.x *= -1.0
+		if sprite.flip_h == true:
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 	
 	
@@ -47,3 +52,6 @@ func _on_HurtBox_area_entered(area):
 			Shape2d.visible = false	
 			PlayerData.score += score
 	return
+
+func _on_VisibilityEnabler2D_screen_exited():
+	queue_free()

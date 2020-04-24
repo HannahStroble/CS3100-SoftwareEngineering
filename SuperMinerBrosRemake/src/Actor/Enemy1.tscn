@@ -14,7 +14,7 @@ extents = Vector2( 1.1007, 0.313303 )
 collision_layer = 2
 collision_mask = 9
 script = ExtResource( 1 )
-speed = Vector2( 75, 550 )
+speed = Vector2( 50, 550 )
 
 [node name="AudioPlayer" parent="." instance=ExtResource( 3 )]
 
@@ -22,6 +22,7 @@ speed = Vector2( 75, 550 )
 position = Vector2( -0.876861, -15.4836 )
 scale = Vector2( 1.79718, 2.27535 )
 texture = ExtResource( 2 )
+flip_h = true
 hframes = 9
 
 [node name="EHit" type="CollisionShape2D" parent="."]

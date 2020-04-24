@@ -7,19 +7,15 @@ onready var PLAYER: KinematicBody2D = get_node("Player")
 onready var camera: Camera2D = get_node("Player/Camera2D")
 
 func _ready() -> void:
-
 	camera.make_current()
 	var file = File.new()
-	var err = file.open("res://src/Level/level1.txt", file.READ)
+	var err = file.open("res://src/Level/mario4-2.txt", file.READ)
 	if err != OK:
 		printerr("Could not open file, error code", err)
 		return
 	var x_cord = 0
 	var y_cord = 0
 
-	#trying to parse file looking for end level delimiter
-	var whole_file = file.get_as_text()
-	print(whole_file.split("|"))
 	while not file.eof_reached():
 		for i in file.get_line():
 			
@@ -270,20 +266,14 @@ func _ready() -> void:
 
 			# dead box - CHANGE THIS TO A DEADBOX
 			elif i == "h":
-				var portal = preload("res://src/Objects/Portal.tscn")
-				var new_portal = portal.instance()
-				self.call_deferred("add_child", new_portal)
-				# set position
-				new_portal.position.x = x_cord * 16
-				new_portal.position.y = y_cord * 16
-				x_cord += 1
+				pass
 				
 			# firefloors
 			
 			
 			# end level flag
 			elif i == "~":
-				var flag = preload("res://src/Objects/Flagpole.tscn")
+				var flag = preload("res://src/Objects/Portal.tscn")
 				var new_flag = flag.instance()
 				new_flag.position.x = x_cord * 16
 				new_flag.position.y = y_cord * 16
@@ -299,13 +289,8 @@ func _ready() -> void:
 
 		y_cord += 1
 		x_cord = 0
-	print(camera)
-	print(camera.limit_bottom)
-	print(y_cord)
+
 	camera.limit_right = camera_limit_right * 16
 	camera.limit_bottom = -1 * y_cord
-	print(camera.limit_bottom)
-	print(camera.position)
-	print(PLAYER.position)
 	camera.position = PLAYER.position
 	file.close()

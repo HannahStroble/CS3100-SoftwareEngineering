@@ -3,6 +3,11 @@
 [ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
 [ext_resource path="res://src/Sounds/AudioPlayer.tscn" type="PackedScene" id=3]
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Actor/Player.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Player/DinoSprites - vita.png" type="Texture" id=2]
+[ext_resource path="res://src/Temp/Jump.tres" type="Animation" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 1.55896, 8.52917 )
@@ -36,8 +41,8 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-resource_name = "Walk"
-length = 0.8
+resource_name = "Idle"
+length = 0.4
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("dino:frame")
@@ -46,16 +51,31 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 4, 5, 4, 5, 6, 7, 8, 9 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 7.69385, 2.69098 )
+[sub_resource type="Animation" id=4]
+length = 3.97
+tracks/0/type = "value"
+tracks/0/path = NodePath("dino:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( -0.1, 2, 3.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.662745, 0.164706, 0.164706, 1 ), Color( 0.658824, 0.396078, 0.396078, 1 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 7.69385, 2.69098 )
+
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 4.21701, 7.73956 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -65,16 +85,12 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
-speed = Vector2( 300, 1500 )
-gravity = 300.0
-
-[node name="AudioPlayer" parent="." instance=ExtResource( 3 )]
 
 [node name="dino" type="Sprite" parent="."]
-position = Vector2( 1, -9 )
+position = Vector2( 1.1221, -9.12209 )
 texture = ExtResource( 2 )
 hframes = 24
-frame = 4
+frame = 3
 
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 wait_time = 0.8
@@ -85,8 +101,11 @@ position = Vector2( 0.203094, -8.48274 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/I-Frame = SubResource( 2 )
-anims/Walk = SubResource( 3 )
+anims/Idle = SubResource( 3 )
+anims/Jump = ExtResource( 3 )
+anims/Star = SubResource( 4 )
 
 [node name="EnemyDetector" type="Area2D" parent="."]
 position = Vector2( 0.463422, -6.70181 )
@@ -96,14 +115,14 @@ collision_mask = 14
 modulate = Color( 0.054902, 0, 1, 1 )
 position = Vector2( 0.264069, 7.50055 )
 scale = Vector2( 0.533271, 0.954602 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 scale = Vector2( 0.604696, 0.568776 )
 current = true
 limit_left = 0
 limit_top = 0
-limit_right = 6400
+limit_right = 2500
 limit_bottom = 160
 smoothing_enabled = true
 smoothing_speed = 10.0
@@ -119,10 +138,11 @@ editor_draw_drag_margin = true
 [node name="Hurt" type="CollisionShape2D" parent="ED2"]
 modulate = Color( 0.0627451, 0.690196, 0.0588235, 1 )
 position = Vector2( 0.732483, -9.51883 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( 0.75473, -6.79234 )
+position = Vector2( 0.8768, -7.64694 )
+[connection signal="timeout" from="InvulnerabilityTimer" to="." method="_on_InvulnerabilityTimer_timeout"]
 [connection signal="area_entered" from="EnemyDetector" to="." method="_on_EnemyDetector_area_entered"]
 [connection signal="body_entered" from="ED2" to="." method="_on_ED2_body_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

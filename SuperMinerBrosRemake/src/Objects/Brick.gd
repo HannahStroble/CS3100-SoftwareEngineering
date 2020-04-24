@@ -44,13 +44,13 @@ func _on_BrickHitBox_body_entered(body):
 		# Add a new item
 		var item
 		if spawnItem == "coin":
-			item = preload("res://src/Objects/Coin.tscn").instance()
+			item = load("res://src/Objects/Coin.tscn").instance()
 		elif spawnItem == "powerup":
-			item = preload("res://src/Objects/powerUpc1.tscn").instance()
+			item = load("res://src/Objects/powerUpc1.tscn").instance()
 		elif spawnItem == "star":
-			item = preload("res://src/Objects/starc1.tscn").instance()
+			item = load("res://src/Objects/starc1.tscn").instance()
 		elif spawnItem == "1up":
-			item = preload("res://src/Objects/1upc1.tscn").instance()
+			item = load("res://src/Objects/1upc1.tscn").instance()
 
 		world.call_deferred("add_child", item)
 		# set position

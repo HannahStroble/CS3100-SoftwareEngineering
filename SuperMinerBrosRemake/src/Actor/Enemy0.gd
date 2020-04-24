@@ -3,10 +3,9 @@ extends "res://src/Actor/Actor.gd"
 #get AudioPlayer Node on game start
 onready var AudioPlayer = get_node("AudioPlayer")
 #Load Sound
-onready var Hit_Sound_fx = load("res://Assets/Sounds/Skeleton_hit.wav")
+onready var Hit_Sound_fx = load("res://Assets/Sounds/mob_sounds/Skeleton_hit.wav")
 onready var sprite = get_node("enemy")
-onready var Shape2d: CollisionShape2D = get_node("EHit")
-onready var HurtBox: Area2D = get_node("HurtBox/CollisionShape2D")
+onready var HurtBox: Area2D = get_node("HurtBox")
 func _ready() -> void:
 	set_physics_process(false)
 	_velocity.x = -speed.x
@@ -18,7 +17,10 @@ func _physics_process(delta: float) -> void:
 	_velocity.y += gravity * delta
 	if is_on_wall():
 		_velocity.x *= -1.0
-		
+		if sprite.flip_h == true:
+			sprite.flip_h = false
+		else:
+			sprite.flip_h = true
 	_velocity.y = move_and_slide(_velocity, FLOOR_NORMAL).y
 
 
@@ -32,10 +34,12 @@ func _on_HurtBox_area_entered(area):
 		if area.position.y >= get_node("HurtBox").position.y and area.name == "EnemyDetector":
 			sound_done = AudioPlayer._play_sound(Hit_Sound_fx)
 			sprite.visible = false
-			Shape2d.disabled = true
-			HurtBox.visible = false
-			Shape2d.visible = false
-			self.set_collision_mask_bit(0,false)
+			HurtBox.set_collision_layer_bit(1,false)
 			call_deferred("get_node","disabled", true)
 			PlayerData.score += score
 	return
+
+
+func _on_VisibilityEnabler2D_screen_exited():
+	queue_free()
+
